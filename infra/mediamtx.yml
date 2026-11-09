@@ -1,0 +1,19 @@
+# Fragmento para /etc/mediamtx.yml  (añadir o fusionar con tu configuración)
+# Después:  sudo systemctl restart mediamtx
+
+# --- Servidor de reproducción de grabaciones ---
+playback: yes
+playbackAddress: 127.0.0.1:9996      # solo local; Nginx lo publica en /playback/
+playbackTrustedProxies: [ '127.0.0.1' ]
+
+# --- Grabación ---
+pathDefaults:
+  record: yes
+  recordFormat: fmp4
+  recordPath: /var/lib/mediamtx/recordings/%path/%Y-%m-%d_%H-%M-%S-%f
+  recordPartDuration: 1s
+  recordSegmentDuration: 10m         # un archivo cada 10 minutos
+  recordDeleteAfter: 7d              # borra grabaciones de más de 7 días (0s = nunca)
+
+paths:
+  camara1: {}                        # la ruta donde publica FFmpeg

@@ -1,0 +1,8 @@
+# Dentro del bloque server { } HTTPS de tu sitio, junto a la ruta /hls/ que ya tienes:
+
+location /playback/ {
+    proxy_pass http://127.0.0.1:9996/;
+    proxy_set_header Host $host;
+    proxy_buffering off;
+    proxy_read_timeout 300s;
+}
